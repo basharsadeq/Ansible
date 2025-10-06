@@ -7,11 +7,15 @@
         name: apache2
         state: present
         update_cache: yes
+    - name: Remove default Apache index.html
+      ansible.builtin.file:
+        path: /var/www/html/index.html
+        state: absent    
 
     - name: Copy HTML file to web root
       ansible.builtin.copy:
         src: test.html
-        dest: /var/www/html/test.html
+        dest: /var/www/html/test.html 
 
     - name: Start Apache service
       ansible.builtin.service:
