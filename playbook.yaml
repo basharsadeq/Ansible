@@ -1,0 +1,20 @@
+- name: Deploy test.html using Ansible
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Apache Web Server
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Copy HTML file to web root
+      ansible.builtin.copy:
+        src: /var/lib/jenkins/workspace/ansible-job/test.html
+        dest: /var/www/html/test.html
+
+    - name: Start Apache service
+      ansible.builtin.service:
+        name: apache2
+        state: started
+        enabled: true
