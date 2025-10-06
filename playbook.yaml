@@ -10,7 +10,7 @@
 
     - name: Copy HTML file to web root
       ansible.builtin.copy:
-        src: /var/lib/jenkins/workspace/ansible-job/test.html
+        src: test.html
         dest: /var/www/html/test.html
 
     - name: Start Apache service
